@@ -40,61 +40,61 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<WeatherBloc, WeatherState>(
-        bloc: weatherBloc,
-        builder: (context, state) {
-          if (state is WeatherLoadingState) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(40, kToolbarHeight, 40, 15),
-              child: SizedBox(
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(40, kToolbarHeight, 40, 15),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              Align(
+                alignment: const AlignmentDirectional(4, -0.3),
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.cyan,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(-4, -0.3),
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.cyan,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0, -1.3),
+                child: Container(
+                  height: 300,
+                  width: 600,
+                  decoration: const BoxDecoration(
+                    // color: Color(0xffffab40),
+                    color: Colors.yellowAccent,
+                  ),
+                ),
+              ),
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(-30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0, -1.3),
-                      child: Container(
-                        height: 300,
-                        width: 600,
-                        decoration: const BoxDecoration(
-                          // color: Color(0xffffab40),
-                          color: Colors.yellowAccent,
-                        ),
-                      ),
-                    ),
-                    BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
+                child: BlocBuilder<WeatherBloc, WeatherState>(
+                  bloc: weatherBloc,
+                  builder: (context, state) {
+                    if (state is WeatherLoadingState) {
+                      return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -351,64 +351,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          } else if (state is WeatherSuccessState) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(40, kToolbarHeight, 40, 15),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(-30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0, -1.3),
-                      child: Container(
-                        height: 300,
-                        width: 600,
-                        decoration: const BoxDecoration(
-                          // color: Color(0xffffab40),
-                          color: Colors.yellowAccent,
-                        ),
-                      ),
-                    ),
-                    BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
+                      );
+                    } else if (state is WeatherSuccessState) {
+                      return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -666,63 +611,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          } else if (state is WeatherFailureState) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(40, kToolbarHeight, 40, 15),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(-30, -0.3),
-                      child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.cyan,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0, -1.3),
-                      child: Container(
-                        height: 300,
-                        width: 600,
-                        decoration: const BoxDecoration(
-                            // color: Color(0xffffab40),
-                            color: Colors.yellowAccent),
-                      ),
-                    ),
-                    BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
+                      );
+                    } else if (state is WeatherFailureState) {
+                      return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -990,16 +881,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ],
-                      ),
-                    )
-                  ],
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
-              ),
-            );
-          } else {
-            return const SizedBox();
-          }
-        },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
